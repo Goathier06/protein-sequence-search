@@ -17,7 +17,8 @@ Groupe No XX
 	* @jroland (Jérémie Roland, titulaire du cours)
 	* @bdubus (Benoît Dubus, assistant)
 	* @balorent (Baptiste Lorent, assistant)
-	* @brferrei (Brenno Ferreira Ribeiro, élève-assistant)
-1. Communiquez l'adresse de votre dépôt via le [formulaire sur l'UV](https://uv.ulb.ac.be/mod/choicegroup/view.php?id=1348811)
+	* @rdevoogh (Robin Devooght, assistant)
+	* @iria0003 (Ivan Riabicheff, élève-assistant)
+1. Communiquez l'adresse de votre dépôt via le [formulaire sur l'UV](https://uv.ulb.ac.be/mod/assign/view.php?id=1479564)
 1. Mettez à jour votre dépôt au fur et à mesure de votre travail sur le projet
 1. Le dernier commit avant l'heure de l'échéance (intermédiaire ou finale) sera considéré comme la version soumise pour évaluation
