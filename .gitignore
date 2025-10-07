@@ -1,0 +1,19 @@
+# Database files
+database/
+
+# Query files
+query/
+
+# BLOSUM files
+blosum/
+
+# Binary files in the root folder
+/swipe
+/makeblastdb
+/ssw_test
+/projetprelim
+/projet
+/projetopt
+
+# Object files
+*.o
