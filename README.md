@@ -7,7 +7,7 @@ Groupe No XX
 
 ## Instructions
 
-1. Forkez ce projet en cliquant sur le bouton "Fork" en haut à droite
+1. Forkez ce projet en cliquant sur le bouton "Fork/Créer une bifurcation" en haut à droite
 	* Pour "Visibility level", choisissez "Private"
 	* Attention: cette opération ne doit être réalisée que par l'un des 3 membres du groupe
 	* Instructions détaillées pour l'utilisation d'un fork: voir [le dépôt du cours](https://gitlab.ulb.be/jroland/infoh304)
