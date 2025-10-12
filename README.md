@@ -1,8 +1,8 @@
 # INFOH304 Projet
 
-Groupe No XX
+Groupe No 9
 * Bou Khaled Yasmina (@identifiant_Gitlab_1)
-* Dejean Romain (@identifiant_Gitlab_2)
+* Dejean Romain (rdej0003)
 * Godeau Gauthier (@identifiant_Gitlab_3)
 
 ## Instructions
