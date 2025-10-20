@@ -1,6 +1,6 @@
 all: projet
-projetprelim:
-	echo "Modifiez le fichier Makefile pour permettre la compilation de votre projet"
+main:
+	g++ main.cpp -o main
 projet:
 	echo "Modifiez le fichier Makefile pour permettre la compilation de votre projet"
 projetopt:
