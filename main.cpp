@@ -62,21 +62,27 @@ int main (int argc, char *argv[]) {
 int value;
 char seq[0];
 string prot_complete = "";
-
+int indice=0 ;
 
 ifstream bdd (argv[2], ios::binary);
 do {
+	
 	bdd.read(seq, 1);
+	value =0;
 	std::memcpy(&value, seq, 1);
 	//cout <<value<< endl;
 	if (value != 0) {
 		prot_complete += decoder(value) ;
 	}
-		
 	else {
-		cout << "check" << endl;
-		if (prot.sequence == prot_complete) 
-			cout << "EUREKAAAAAA" << endl;
+		indice++;
+		if (prot.sequence == prot_complete) {
+			cout << prot_complete << endl << endl;
+			cout << indice << endl;
+			break;
+		}
+		prot_complete = "";
+			
 		
 	}
 	
