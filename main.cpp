@@ -3,10 +3,7 @@
 #include <iostream>
 #include <string>
 #include <unistd.h>
-#include "lecture_fasta.h"
-#include "lecture_psq.h"
-#include "lecture_pin.h"
-#include "lecture_phr.h"
+#include "lecture.h"
 using namespace std ;
 
 

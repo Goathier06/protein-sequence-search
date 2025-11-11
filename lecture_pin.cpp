@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <fstream>
+#include <iostream>
+#include <cstring>
 using namespace std ;
 
 
@@ -29,7 +31,7 @@ int lect_pin(string file_path, int indice) {
 	for (int i = 0; i<=indice+6;i++) {
 	bdd_pin.read(reversed_bytes, 4);
 	reverse(reversed_bytes);
-	std::memcpy(&val, reversed_bytes, 4);
+	memcpy(&val, reversed_bytes, 4);
 
 		if (i == 2) {
 			longueur_titre = val/4 ;

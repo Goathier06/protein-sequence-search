@@ -1,9 +1,8 @@
 all: projet
 projetprelim: 
-	g++ main.cpp -o main
+	g++ main.cpp lecture_psq.cpp lecture_fasta.cpp lecture_pin.cpp lecture_phr.cpp -o projetprelim
 
 projet:
-	g++ main.cpp -o main
 	echo "Modifiez le fichier Makefile pour permettre la compilation de votre projet"
 projetopt:
 	echo "Modifiez le fichier Makefile pour permettre la compilation de votre projet"
