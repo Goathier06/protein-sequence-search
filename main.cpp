@@ -22,21 +22,24 @@ int main (int argc, char *argv[]) {
 
 
 	else {
-        proteine prot;
-        ifstream fichier (argv[1]) ;
+		//Initialisations
+        proteine prot; 					//Proteine ou on stock la proteine de requête qui est lue du fichier FASTA
+        ifstream fichier (argv[1]) ; 	//Initialise lecture du fichier FASTA
         string chem_base (argv[2]) ;
+        string fichier_resultats = (argc >= 4) ? argv[3] : "";	
 
 
         if (fichier.is_open()) {
             getline(fichier, prot.identifiant) ;
         }
 
-        cout << "Identifiant de la protéine de requête :" << endl << prot.identifiant << endl ;
+        cout << prot.identifiant << endl ;
+        
         string line = ""; 
         while (getline(fichier, line)){
                 prot.sequence += line;
             }
-        cout << "Séquence de la protéine de requête :" << endl << prot.sequence << endl ;
+        //cout << "Séquence de la protéine de requête :" << endl << prot.sequence << endl ;
 
         fichier.close();
        // string cmd = "./makeblastdb -in " + chem_base + " -dbtype prot -blastdb_version 4 -out database/extraits";
@@ -44,24 +47,19 @@ int main (int argc, char *argv[]) {
        // if (ext != 0){
        //     cout << "Erreur d'extraction :/" << endl;
        //}
-	
-
-
-
-
-
+ 
 
 // Permet de parser le fichier psq entièrement mais reste encore à être optimiser
 
 int value;
-char seq[0];
+char seq[1];
 string prot_complete = "";
 int indice=0 ;
 
 ifstream bdd_psq ("database/extraits.psq", ios::binary);
-while (seq[0] != EOF) {
+while (bdd_psq.read(seq, 1)) {
 	
-	bdd_psq.read(seq, 1);
+	
 	value =0;
 	std::memcpy(&value, seq, 1);
 	//cout <<value<< endl;
@@ -71,8 +69,8 @@ while (seq[0] != EOF) {
 	else {
 		indice++;
 		if (prot.sequence == prot_complete) {
-			cout << prot_complete << endl << endl;
-			cout << indice << endl;
+			//cout << prot_complete << endl << endl;
+			//cout << indice << endl;
 			break;
 		}
 		prot_complete = "";
@@ -112,7 +110,7 @@ while (seq[0] != EOF) {
 	
 	//LIRE LE FICHIER PHR
 	int valeur = 0;
-	char oct[0];
+	char oct[1];
 	char header[22];
 	ifstream bdd_phr ("database/extraits.phr", ios::binary);
 	if (bdd_phr.is_open()) {
@@ -127,8 +125,18 @@ while (seq[0] != EOF) {
 		cout << header << endl;
 	}
 	bdd_phr.close();
-
 	
+
+	if (fichier_resultats != ""){
+		ofstream out(fichier_resultats);
+		if (!out.is_open()) {
+            cerr << "Erreur: impossible de créer " << fichier_resultats << endl;
+            return 1;
+        }
+        out << prot.identifiant << endl;
+        out << header << endl;
+        out.close();
+	}
 	
 	
 	
