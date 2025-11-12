@@ -7,23 +7,25 @@ struct proteine {
 	string sequence ;
 };
 
+//Fonction permettangt de lire le fichier fasta
+// et le stocker dans la proteine prot
 string lect_fasta(string file_path){
 	proteine prot; 	
-	ifstream fichier (file_path);
+	ifstream fichier (file_path); //Ouverture du fichier fasta
 	
 	if (fichier.is_open()) {
-            getline(fichier, prot.identifiant) ;
+            getline(fichier, prot.identifiant) ; //Lecture ligne par ligne
+												//et stockée dans la partie identifiant				
         }
 		
-        //cout << prot.identifiant << endl ;
+  
         
         string line = ""; 
-        while (getline(fichier, line)){
+        while (getline(fichier, line)){		//lecture ligne par ligne de la séquence
                 prot.sequence += line;
             }
-        //cout << "Séquence de la protéine de requête :" << endl << prot.sequence << endl ;
 
-        fichier.close();
+        fichier.close(); 	//Fermeture du fichier à la fin de la lecture
         return prot.sequence;
 }
 
