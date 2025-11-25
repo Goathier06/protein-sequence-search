@@ -20,8 +20,7 @@ int lect_pin(string file_path, int indice) {
 	
 	//Initialisations
 	const string ext_pin = ".pin";
-	int val;
-	int longueur_titre =100; //Initalisation de longueur titre à une grande valeur 
+	int val; 
 	char reversed_bytes[4];
 	
 	//Ouverture du fichier pin
@@ -37,16 +36,20 @@ int lect_pin(string file_path, int indice) {
 	bdd_pin.read(reversed_bytes, 4);
 	reverse(reversed_bytes);
 	memcpy(&val, reversed_bytes, 4);
-	
+	const int longueur_titre = val;
 	
 	bdd_pin.seekg(val, std::ios::cur);
 	
 	bdd_pin.read(reversed_bytes, 4);
 	reverse(reversed_bytes);
 	memcpy(&val, reversed_bytes, 4);
+	const int longueur_timestamp = val;
 	
-	
-	bdd_pin.seekg(8 + val + indice*4, std::ios::cur);
+	int rest=8;
+	if (((longueur_timestamp + longueur_titre) % 8) != 0)
+		rest = (val+longueur_titre+8)%8;
+
+	bdd_pin.seekg(8 + val + (8-rest) + indice*4, std::ios::cur);
 	
 	
 	
