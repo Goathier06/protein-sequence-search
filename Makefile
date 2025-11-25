@@ -1,5 +1,5 @@
 all: projet
-projetprelim: 
+projetprelim: main.cpp lecture_psq.cpp lecture_fasta.cpp lecture_pin.cpp lecture_phr.cpp
 	g++ main.cpp lecture_psq.cpp lecture_fasta.cpp lecture_pin.cpp lecture_phr.cpp -o projetprelim
 
 projet:

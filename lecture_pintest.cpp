@@ -16,6 +16,8 @@ void reverse(char mot[]) {
     }
 
 
+//22826816
+
 int lect_pin(string file_path, int indice) {
 	
 	//Initialisations
@@ -53,9 +55,10 @@ int lect_pin(string file_path, int indice) {
 	bdd_pin.read(reversed_bytes, 4);
 	reverse(reversed_bytes);
 	memcpy(&val, reversed_bytes, 4);
+	cout << "on a trouvé la position dans le pin" << endl;
+	cout << val << endl;
 	//Fermeture du fichier 
 	bdd_pin.close();
 	return val; //Retourne la position des informations de la séquence 
 				// dans le fichier phr
 }
-

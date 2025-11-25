@@ -38,6 +38,7 @@ int lect_psq(string file_path, string seq_requete) {
 		
 	// Lire le fichier jusqu'à trouver la séquence de requête dans la base de données 
 	while (bdd_psq.read(&seq, 1)) {
+		//cout<<"boucle infini"<<endl;
 		value =0;
 		memcpy(&value, &seq, 1);
 		if (value != 0) {

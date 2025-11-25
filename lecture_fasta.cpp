@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <fstream>
+#include <iostream>
 using namespace std ;
 
 struct proteine {

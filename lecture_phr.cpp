@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <cstring>
+#include <unistd.h>
 using namespace std ;
 
 
@@ -10,22 +11,19 @@ using namespace std ;
 string lect_phr(string file_path, int pos) {
 	//Initialisations
 	const string ext_phr = ".phr";
-	int valeur = 0;
+	int valeur;
 	char oct;
 	char lettre;
 	string header;
-	
 	ifstream bdd_phr (file_path + ext_phr, ios::binary); //Ouverture du fichier
-	if (!bdd_phr.is_open()) 
+	if (!bdd_phr.is_open()) {
 		cerr << "Impossible d'ouvrir"<< endl;
-		
-	for (int j = 0; j < pos;j++) { //Lecture de chaque byte jusqu'a arrivé à la position recherchée
-		bdd_phr.read(&oct, 1);
 	}
-	do  {
-		bdd_phr.read(&oct,1);
+	bdd_phr.seekg(pos, std::ios::beg);
+	
+	while (valeur != 26 && bdd_phr.read(&oct,1))  {
 		memcpy(&valeur,&oct, 1);
-	} while (valeur != 26);
+	} 
 	
 	bdd_phr.read(&oct,1); //On lit le byte qui précède la chaine de caractères comme mentionné dans [Far10]
 	while (bdd_phr.read(&lettre,1)) {
