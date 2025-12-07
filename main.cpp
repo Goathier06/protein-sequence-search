@@ -18,7 +18,7 @@ void print_header(string header, ostream &out = cout) {
 
 
 int main (int argc, char *argv[]) {
-	if ( argc < 3) {
+	if ( argc < 4) {
 		cout << "Pas assez de fichiers donnés, veuillez compléter" << endl ;
 	return 1 ;
 }
@@ -28,6 +28,7 @@ int main (int argc, char *argv[]) {
 		//Initialisations
         string fasta_path (argv[1]);
         string bdd_path (argv[2]) ;
+        string blosum_path(argv[3]);
 
 		
 		//Lecture du fichier contenant la proteine de requête
@@ -47,7 +48,10 @@ int main (int argc, char *argv[]) {
 		print_header(header);
 		
 		BlosumMatrix matrice;
-		matrice.lecture_blosum("blosum/BOSUM62");
+		matrice.lecture_blosum(blosum_path);
+		int score = matrice.getScore(1, 16);
+		cout << score << endl;
+		
 				
 	return 0 ; 
 	}

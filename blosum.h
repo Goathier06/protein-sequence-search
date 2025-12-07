@@ -8,9 +8,12 @@ using namespace std ;
 
 class BlosumMatrix{
 	public:
-	int matrice[28][28]={0};
+	int matrice[24][24]={0};
     void lecture_blosum(string file_path);	
+    int getScore(int a, int b);
 };
+
+int getScore(int a, int b);
 
 inline int Decodeur(char X){
 	switch(X){

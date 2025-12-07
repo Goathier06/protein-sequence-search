@@ -36,6 +36,12 @@ int lect_psq(string file_path, string seq_requete) {
 	if (!bdd_psq.is_open()) 
 		cerr << "Impossible d'ouvrir" << endl;
 		
+	
+	//smith_waterman(string file_path, string seq_requete);
+	
+	
+	
+		
 	// Lire le fichier jusqu'à trouver la séquence de requête dans la base de données 
 	while (bdd_psq.read(&seq, 1)) {
 		//cout<<"boucle infini"<<endl;
