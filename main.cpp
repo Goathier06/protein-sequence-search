@@ -4,7 +4,10 @@
 #include <string>
 #include <unistd.h>
 #include "lecture.h"
+#include "blosum.h"
+
 using namespace std ;
+class BlosumMatrix;
 
 
 void print_header(string header, ostream &out = cout) {
@@ -43,6 +46,9 @@ int main (int argc, char *argv[]) {
 		string header = lect_phr(bdd_path, pos);
 		print_header(header);
 		
+		BlosumMatrix matrice;
+		matrice.lecture_blosum("blosum/BOSUM62");
+				
 	return 0 ; 
 	}
 }
