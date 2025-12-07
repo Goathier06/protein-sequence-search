@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cstring>
 #include <iostream>
+#include "lecture.h"
 using namespace std ;
 
 //Permet de convertir les octets en acides aminés selon les normes indiqués dans le fichier Far[10]
@@ -19,7 +20,7 @@ char decoder(int nbr) {
 	
 }	
 
-int lect_psq(string file_path, string seq_requete) {
+int lect_psq(string blosum_path, string file_path, string seq_requete, int gop, int gep) {
 	
 	//Initialisations
 	const string ext_psq = ".psq";
@@ -51,6 +52,8 @@ int lect_psq(string file_path, string seq_requete) {
 			prot_complete += decoder(value) ;
 		}
 		else {
+			cout << "coucou psq" << endl;
+			smith_waterman(blosum_path,prot_complete,seq_requete,gop,gep);
 			indice++; // Incrémentation de l'indice à chaque itération
 			if (seq_requete == prot_complete) {
 				return indice;	// Retourne le bonne indice
