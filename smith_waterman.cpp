@@ -15,43 +15,35 @@ int smith_waterman(string blosum_path, string prot_bdd, string prot_query, int g
 		BlosumMatrix matrice;
 		matrice.lecture_blosum(blosum_path);
 		int m =prot_query.length();
+		int score;
 		vector<int> H(m+1, 0);
 		vector<int> E(m+1, 0);
 		
-		for (int j =1; j < prot_bdd.length(); j++) {
+		for (int j = 0; j < prot_bdd.length(); j++) {
 			int H_diag_prec = 0; // H[0,0]
 			int F=0; // F[0,1]
-			cout << "coucou"<< endl;
-			for (int i=1; i <prot_query.length(); i++) {
+			for (int i=0; i < m; i++) {
 				int H_mtn = H[i]; // Cas de base de H : H[1,0] = 0
 				int new_E = max(H[i] - gap_open_penalty, E[i] - gap_extension_penalty) ;// E[i] correspond à E[1,0] et on calcule E[1,1]
-				E[i+1] = new_E;
+				E[i] = new_E;
 				F = max(H_diag_prec - gap_open_penalty, F - gap_extension_penalty);
 				
-				int score = matrice.getScore(Decodeur(prot_bdd[i]), Decodeur(prot_query[j]));
+				score = matrice.getScore(Decodeur(prot_query[i]),Decodeur(prot_bdd[j]));
 				H[i] = max({H_diag_prec + score, new_E, F, 0});
 				
 				H_diag_prec = H_mtn;
-				cout << H_diag_prec <<endl;
-				
-			}
-				
-				
-				
-				
-				
-			
-			
-			
-			
+				//cout << H_diag_prec <<endl;
+				//cout << score << endl;
+			}			
 		}
+		cout << H[m] << endl;
 		return 0;
 	}
 		
 		
 		
 		
-		/*
+/*
 		if (indice1 == 0 && indice2 ==0) {
 			H[indice1] = 0;
 			}
@@ -72,8 +64,6 @@ int smith_waterman(string blosum_path, string prot_bdd, string prot_query, int g
 		max((smith_waterman(prot_bdd, prot_query, gap_open_penalty, gap_extension_penalty, indice1-1, indice2-1 + matrice.getScore(Decodeur(prot_query[indice1])), Decodeur(prot_bdd[indice2])), E[indice1][indice2], F[indice1][indice2]);
 		return H[indice1];
 
-	}
-}	
-	*/		
-	
-
+			}
+		}	
+*/		

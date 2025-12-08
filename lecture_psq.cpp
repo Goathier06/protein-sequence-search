@@ -48,19 +48,29 @@ int lect_psq(string blosum_path, string file_path, string seq_requete, int gop, 
 		//cout<<"boucle infini"<<endl;
 		value =0;
 		memcpy(&value, &seq, 1);
+		cout << value << endl;
 		if (value != 0) {
 			prot_complete += decoder(value) ;
 		}
 		else {
-			cout << "coucou psq" << endl;
-			smith_waterman(blosum_path,prot_complete,seq_requete,gop,gep);
-			indice++; // Incrémentation de l'indice à chaque itération
-			if (seq_requete == prot_complete) {
-				return indice;	// Retourne le bonne indice
-			}
+			if (prot_complete.empty()){
+				cout << "aie aie aie" << endl;
+				}
+			else{
+
+			int test = smith_waterman(blosum_path,prot_complete,seq_requete,gop,gep);
+			cout << test << endl;
+			// Incrémentation de l'indice à chaque itération
+			/*if (seq_requete == prot_complete) {
+				return indice;	// Retourne le bonne indice */
 			prot_complete = ""; // Réinitialise la séquence à chaque itération
+			indice++;
+			//cout << indice << endl;
+	
+			}
 		}
-	}
+		}
+	
 	bdd_psq.close();
-	return 1; // La séquence n'a pas été trouvée
+	return -1; // La séquence n'a pas été trouvée
 } 
