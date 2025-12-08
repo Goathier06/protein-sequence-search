@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <vector>
 #include <cstring>
+#include <chrono>
+#include <thread>
 #include "blosum.h"
 using namespace std ;
 
@@ -16,27 +18,45 @@ int smith_waterman(string blosum_path, string prot_bdd, string prot_query, int g
 		matrice.lecture_blosum(blosum_path);
 		int m =prot_query.length();
 		int score;
-		vector<int> H(m+1, 0);
+		vector<int> H(m+1, 0); 
 		vector<int> E(m+1, 0);
-		
+		int S =0;
 		for (int j = 0; j < prot_bdd.length(); j++) {
-			int H_diag_prec = 0; // H[0,0]
-			int F=0; // F[0,1]
-			for (int i=0; i < m; i++) {
-				int H_mtn = H[i]; // Cas de base de H : H[1,0] = 0
-				int new_E = max(H[i] - gap_open_penalty, E[i] - gap_extension_penalty) ;// E[i] correspond à E[1,0] et on calcule E[1,1]
+			//cout << "NOUVELLE COLONNE" << endl;
+ 			int H_diag_prec = 0; // Ce H et F sont nos cas de base se trouvant tout en haut dans le graphe de dépendance, 
+			int F=0; // donc à chaque nouvelle colonne, ils sont égaux à 0
+			for (int i=1; i < m; i++) {
+				int H_gauche = H[i];
+				int new_E = max(H_gauche - gap_open_penalty, E[i] - gap_extension_penalty) ;// E[i] correspond à E[1,0] et on calcule E[1,1]
 				E[i] = new_E;
-				F = max(H_diag_prec - gap_open_penalty, F - gap_extension_penalty);
+				F = max(H[i-1] - gap_open_penalty, F - gap_extension_penalty);
+				score = matrice.getScore(Decodeur(prot_query[i-1]),Decodeur(prot_bdd[j]));
+				/*
+				if (i > m -3) {
+				cout << "score:"<<score << endl;
+				cout << prot_query[i] << endl;
+				cout << prot_bdd[j] << endl;
+				cout << "h final : " << H[m] << endl;
+				sleep(1);
+			}
+				//sleep(0.1);
+				*/
+				H[i] = max({H_diag_prec + score, E[i], F, 0});
+				/*
+				cout << "H diag prec" << H_diag_prec + score << endl;
+				cout << "E" << E[i]<< endl;
+				cout << "F" << F << endl;
+				cout << "H[i]" << H[i] << endl;
+				*/
 				
-				score = matrice.getScore(Decodeur(prot_query[i]),Decodeur(prot_bdd[j]));
-				H[i] = max({H_diag_prec + score, new_E, F, 0});
+				S = max(H[i],S);
 				
-				H_diag_prec = H_mtn;
+				H_diag_prec = H_gauche;
 				//cout << H_diag_prec <<endl;
 				//cout << score << endl;
 			}			
 		}
-		cout << H[m] << endl;
+		cout << "baka:"<< S << endl;
 		return 0;
 	}
 		
