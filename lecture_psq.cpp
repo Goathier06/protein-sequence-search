@@ -54,11 +54,11 @@ int lect_psq(string blosum_path, string file_path, string seq_requete, int gop, 
 		}
 		else {
 			if (prot_complete.empty()){
-				cout << "aie aie aie" << endl;
+				//cout << "aie aie aie" << endl;
 				}
 			else{
 			int test = smith_waterman(blosum_path,prot_complete,seq_requete,gop,gep);
-			cout << prot_complete << endl;
+			//cout << prot_complete << endl;
 			//cout << test << endl;
 			// Incrémentation de l'indice à chaque itération
 			/*if (seq_requete == prot_complete) {

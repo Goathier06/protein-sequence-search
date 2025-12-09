@@ -37,7 +37,7 @@ int main (int argc, char *argv[]) {
 		string sequence = lect_fasta(fasta_path);
 		
 		//Recherche de la sequence identique a la proteine de requête
-		int indice = lect_psq(blosum_path,bdd_path, sequence, gap_open_penalty + gap_extension_penalty, gap_extension_penalty);
+		int indice = lect_psq(blosum_path,bdd_path, sequence, gap_open_penalty+gap_extension_penalty, gap_extension_penalty);
 		
 		if (indice == -1)
 			cerr << "Impossible de trouver la protéine dans la base de données" << endl;

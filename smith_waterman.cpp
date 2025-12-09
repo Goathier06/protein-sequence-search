@@ -25,7 +25,7 @@ int smith_waterman(string blosum_path, string prot_bdd, string prot_query, int g
 			//cout << "NOUVELLE COLONNE" << endl;
  			int H_diag_prec = 0; // Ce H et F sont nos cas de base se trouvant tout en haut dans le graphe de dépendance, 
 			int F=0; // donc à chaque nouvelle colonne, ils sont égaux à 0
-			for (int i=1; i < m; i++) {
+			for (int i=1; i < m+1; i++) {
 				int H_gauche = H[i];
 				int new_E = max(H_gauche - gap_open_penalty, E[i] - gap_extension_penalty) ;// E[i] correspond à E[1,0] et on calcule E[1,1]
 				E[i] = new_E;
@@ -56,7 +56,7 @@ int smith_waterman(string blosum_path, string prot_bdd, string prot_query, int g
 				//cout << score << endl;
 			}			
 		}
-		cout << "baka:"<< S << endl;
+		//cout << "baka:"<< S << endl;
 		return 0;
 	}
 		
