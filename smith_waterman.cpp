@@ -57,7 +57,7 @@ int smith_waterman(string blosum_path, string prot_bdd, string prot_query, int g
 			}			
 		}
 		//cout << "baka:"<< S << endl;
-		return 0;
+		return S;
 	}
 		
 		

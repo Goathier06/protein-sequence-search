@@ -37,17 +37,25 @@ int main (int argc, char *argv[]) {
 		string sequence = lect_fasta(fasta_path);
 		
 		//Recherche de la sequence identique a la proteine de requête
-		int indice = lect_psq(blosum_path,bdd_path, sequence, gap_open_penalty+gap_extension_penalty, gap_extension_penalty);
-		
-		if (indice == -1)
-			cerr << "Impossible de trouver la protéine dans la base de données" << endl;
+		vector<pair<int,int>> indices = lect_psq(blosum_path,bdd_path, sequence, gap_open_penalty+gap_extension_penalty, gap_extension_penalty);
+		cout << indices[0].first << endl;
+		cout << indices[0].second << endl;
+		cout << indices[5].first << endl;
+		cout << indices[5].second << endl;
+		cout << indices[19].first << endl;
+		cout << indices[19].second << endl;
 		
 		//Recherche de la position de cette proteine	
-		int pos = lect_pin(bdd_path, indice);
-		
+		for (int i = 0; i< indices.size(); i++)
+		{
+			int pos = lect_pin(bdd_path, indices[i].second);
+			string header = lect_phr(bdd_path, pos);
+			//print_header(header);
+			//cout << header << endl;
+			//cout << indices[i].second << endl;
+		}	
 		//Recherche de son header a partir de sa position trouuvé dans le pin 
-		string header = lect_phr(bdd_path, pos);
-		print_header(header);
+		
 	
 
 		
