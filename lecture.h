@@ -9,7 +9,7 @@ string lect_fasta(string file_path);
 
 char decoder(int nbr);
 
-vector<pair<int,int>> lect_psq(string blosum_path, string file_path, string seq_requete, int gop, int gep);
+vector<pair<int,int>>  lect_psq(string blosum_path, string file_path, string seq_requete, int gop, int gep);
 
 string lect_phr(string file_path, int pos);
 

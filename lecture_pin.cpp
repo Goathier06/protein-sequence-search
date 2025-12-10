@@ -49,7 +49,7 @@ int lect_pin(string file_path, int indice) {
 	if (((longueur_timestamp + longueur_titre) % 8) != 0)
 		rest = (val+longueur_titre+8)%8;
 
-	bdd_pin.seekg(8 + val + (8-rest) + indice*4, std::ios::cur);
+	bdd_pin.seekg(16 + val + (8-rest) + indice*4, std::ios::cur);
 	
 	
 	
