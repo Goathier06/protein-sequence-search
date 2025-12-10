@@ -24,14 +24,14 @@ char decoder(int nbr) {
 void tri(vector<pair<int,int>>& classement, pair<int,int> couple)
 {
 	
-	if (classement[0].first <= couple.first)
+	if (classement[classement.size()-1].first <= couple.first)
 	{
-		classement[0] = couple;
+		classement[classement.size()-1] = couple;
 	}
 	for (int i =0; i<classement.size(); i++)
 	{
 		int j = i;
-		while ((j>0) and classement[j-1].first > classement[j].first)
+		while ((j>0) and classement[j-1].first < classement[j].first)
 		{
 			pair<int,int> temp = classement[j];
 			classement[j] = classement[j-1];
