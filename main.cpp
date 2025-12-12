@@ -11,7 +11,7 @@ class BlosumMatrix;
 
 
 void print_header(string header, ostream &out = cout) {
-	out << header << endl; 
+	out << header  << endl; 
 	}
 
 
@@ -55,7 +55,7 @@ int main (int argc, char *argv[]) {
 		{
 			int pos = lect_pin(bdd_path, indices[i].second);   //
 			string header = lect_phr(bdd_path, pos);
-			print_header(header);
+			print_header(header + " " + to_string(indices[i].first));
 			//cout << header << endl;
 			//cout << indices[i].second << endl;
 		}	

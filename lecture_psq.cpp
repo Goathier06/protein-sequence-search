@@ -88,7 +88,7 @@ vector<pair<int,int>>  lect_psq(string blosum_path, string file_path, string seq
 				prot_complete = ""; // Réinitialise la séquence à chaque itération
 				pair <int,int> couple = {test, indice};
 				tri(classement, couple);
-				cout << prot_complete << "et score : " << couple.first <<" " << couple.second << endl;
+				//cout << prot_complete << "et score : " << couple.first <<" " << couple.second << endl;
 				indice++;
 			}
 		}
