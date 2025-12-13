@@ -4,14 +4,13 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include "blosum.h"
+#include "lecture.h"
 using namespace std ;
 
 
 
 void BlosumMatrix:: lecture_blosum(string file_path ){
 	ifstream fichier (file_path); //Ouverture du fichier
-	
 	if (!fichier.is_open()) {
 		std::cerr << "Impossible d'ouvrir"<<endl;
 	}

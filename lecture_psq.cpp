@@ -5,6 +5,7 @@
 #include "lecture.h"
 #include <vector>
 #include <utility>
+#include <algorithm>
 using namespace std ;
 
 //Permet de convertir les octets en acides aminés selon les normes indiqués dans le fichier Far[10]
@@ -28,6 +29,7 @@ void tri(vector<pair<int,int>>& classement, pair<int,int> couple)
 	{
 		classement[classement.size()-1] = couple;
 	}
+	
 	for (int i =0; i<classement.size(); i++)
 	{
 		int j = i;
@@ -50,7 +52,10 @@ vector<pair<int,int>>  lect_psq(string blosum_path, string file_path, string seq
 	char seq;
 	vector <pair<int,int>> classement(20,{0,0});
 	string prot_complete = "";
+	int m = seq_requete.length();
 	int indice=0 ; // Position de la séquence dans la bdd
+	BlosumMatrix matrice;
+	matrice.lecture_blosum(blosum_path);
 	
 	
 	// Ouverture du fichier psq
@@ -59,12 +64,6 @@ vector<pair<int,int>>  lect_psq(string blosum_path, string file_path, string seq
 	// Vérification de l'ouverture
 	if (!bdd_psq.is_open()) 
 		cerr << "Impossible d'ouvrir" << endl;
-		
-	
-	//smith_waterman(string file_path, string seq_requete);
-	
-	
-	
 		
 	// Lire le fichier jusqu'à trouver la séquence de requête dans la base de données 
 	while (bdd_psq.read(&seq, 1)) 
@@ -78,13 +77,9 @@ vector<pair<int,int>>  lect_psq(string blosum_path, string file_path, string seq
 		}
 		else 
 		{
-			if (prot_complete.empty())
+			if (!(prot_complete.empty()))
 			{
-				//cout << "aie aie aie" << endl;
-			}
-			else
-			{
-				int test = smith_waterman(blosum_path,prot_complete,seq_requete,gop,gep);
+				int test = smith_waterman(matrice,prot_complete,seq_requete,m,gop,gep);
 				prot_complete = ""; // Réinitialise la séquence à chaque itération
 				pair <int,int> couple = {test, indice};
 				tri(classement, couple);

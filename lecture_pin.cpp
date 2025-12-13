@@ -44,7 +44,6 @@ int lect_pin(string file_path, int indice) {
 	reverse(reversed_bytes);
 	memcpy(&val, reversed_bytes, 4);
 	const int longueur_timestamp = val;
-	
 	int rest=8;
 	if (((longueur_timestamp + longueur_titre) % 8) != 0)
 		rest = (val+longueur_titre+8)%8;
