@@ -1,10 +1,13 @@
 all: projet
-projetprelim: main.cpp lect_psqtest.o lecture_fasta.o lecture_pin.o lecture_phr.o lecture_blosum.o smith_waterman.o lecture.h
-	g++ main.cpp lect_psqtest.o lecture_fasta.o lecture_pin.o lecture_phr.o lecture_blosum.o smith_waterman.o -o projetprelim
+
+projetprelim: main_prelim.cpp lecture_psq_prelim.o lecture_fasta.o lecture_pin.o lecture_phr.o lecture.h
+	g++ main_prelim.cpp lecture_psq_prelim.o lecture_fasta.o lecture_pin.o lecture_phr.o -o projetprelim
 	
 projet: main.cpp lecture_psq.o lecture_fasta.o lecture_pin.o lecture_phr.o lecture_blosum.o smith_waterman.o lecture.h
 	g++ main.cpp lecture_psq.o lecture_fasta.o lecture_pin.o lecture_phr.o lecture_blosum.o smith_waterman.o -o projet
 
+lecture_psq_prelim.o : lecture_psq_prelim.cpp
+	g++ -c lecture_psq_prelim.cpp
 lecture_psq.o : lecture_psq.cpp
 	g++ -c lecture_psq.cpp
 lecture_pin.o : lecture_pin.cpp

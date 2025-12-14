@@ -23,6 +23,8 @@ char decoder(int nbr);
 
 vector<pair<int,int>> lect_psq(string bdd_path, string file_path, string seq_requete, int gop, int gep);
 
+int lect_psq_prelim(string file_path, string seq_requete);
+
 string lect_phr(string file_path, int pos);
 
 int lect_pin(string file_path, int indice); 
