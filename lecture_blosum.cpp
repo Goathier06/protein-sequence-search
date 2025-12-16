@@ -20,14 +20,18 @@ void BlosumMatrix:: lecture_blosum(string file_path ){
 		// par charactère et le décoder
 		char letter; //Variable temporaire pour stocker la lettre a décoder
 		int score; //Variable temporaire pour stocker les scores
+		
 		while (getline(fichier, line)){ //Lit chaque ligne et la stock dans line
-			if (line.empty() || line[0] == '#') continue;
-			stringstream stream(line); //Flux pour découper la ligne charactère
+			
 			// Ligne vide ou commentaire: ignorer
+			if (line.empty() || line[0] == '#') continue;
+			 
+			stringstream stream(line); //Flux pour découper la ligne en charactères
+			
 			// Ligne avec les titres des colonnes:
 			// Décoder
-			// Stocker dansle vecteur qui leur est consacrée
-			if (ColumnsOrder.empty() && line[0]==' '){
+			// Stocker dans le vecteur qui leur est consacré
+			if (ColumnsOrder.empty() && line[0]==' '){ 
 				while (stream>>letter){
 				ColumnsOrder.push_back(Decodeur(letter));
 				}
@@ -45,10 +49,11 @@ void BlosumMatrix:: lecture_blosum(string file_path ){
 			
 			}	
 		}
-		fichier.close();
+		fichier.close(); //Fermeture du fichier
 	}
 }
 
+//Retourne le score pour une combinaison de deux acides aminés donnés
 int BlosumMatrix::getScore(int a, int b) {
 	return matrice[a][b];
 }
