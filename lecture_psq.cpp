@@ -22,7 +22,7 @@ char decoder(int nbr) {
 	}
 	
 }	
-void tri(vector<pair<int,int>>& classement, pair<int,int> couple)
+void tri(array<pair<int,int>, 20>& classement, pair<int,int> couple)
 {
 	
 	if (classement[classement.size()-1].first <= couple.first)
@@ -43,14 +43,14 @@ void tri(vector<pair<int,int>>& classement, pair<int,int> couple)
 	}
 }
 
-vector<pair<int,int>>  lect_psq(string blosum_path, string file_path, string seq_requete, int gop, int gep) 
+array<pair<int,int>, 20> lect_psq(string blosum_path, string file_path, string seq_requete, int gop, int gep) 
 {
 	
 	//Initialisations
 	const string ext_psq = ".psq";
 	int value;
 	char seq;
-	vector <pair<int,int>> classement(20,{0,0});
+	array<pair<int,int>, 20> classement;;
 	string prot_complete = "";
 	int m = seq_requete.length();
 	int indice=0 ; // Position de la séquence dans la bdd
@@ -79,9 +79,9 @@ vector<pair<int,int>>  lect_psq(string blosum_path, string file_path, string seq
 		{
 			if (!(prot_complete.empty()))
 			{
-				int test = smith_waterman(matrice,prot_complete,seq_requete,m,gop,gep);
+				int score = smith_waterman(matrice,prot_complete,seq_requete,m,gop,gep);
 				prot_complete = ""; // Réinitialise la séquence à chaque itération
-				pair <int,int> couple = {test, indice};
+				pair <int,int> couple = {score, indice};
 				tri(classement, couple);
 				//cout << prot_complete << "et score : " << couple.first <<" " << couple.second << endl;
 				indice++;

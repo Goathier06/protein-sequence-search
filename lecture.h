@@ -21,7 +21,7 @@ string lect_fasta(string file_path);
 
 char decoder(int nbr);
 
-vector<pair<int,int>> lect_psq(string bdd_path, string file_path, string seq_requete, int gop, int gep);
+array<pair<int,int>, 20> lect_psq(string bdd_path, string file_path, string seq_requete, int gop, int gep);
 
 int lect_psq_prelim(string file_path, string seq_requete);
 

@@ -54,8 +54,7 @@ int smith_waterman(BlosumMatrix matrice, string prot_bdd, string prot_query, int
 			int F=0; // donc à chaque nouvelle colonne, ils sont égaux à 0
 			for (int i=1; i < m+1; i++) {
 				int H_gauche = H[i];
-				int new_E = max(H_gauche - gap_open_penalty, E[i] - gap_extension_penalty) ;// E[i] correspond à E[1,0] et on calcule E[1,1]
-				E[i] = new_E;
+				E[i] = max(H_gauche - gap_open_penalty, E[i] - gap_extension_penalty) ;// E[i] correspond à E[1,0] et on calcule E[1,1]
 				F = max(H[i-1] - gap_open_penalty, F - gap_extension_penalty);
 				score = matrice.getScore(Decodeur(prot_query[i-1]),Decodeur(prot_bdd[j]));
 				H[i] = max({H_diag_prec + score, E[i], F, 0});

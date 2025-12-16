@@ -35,7 +35,7 @@ int main (int argc, char *argv[]) {
 		
 		//Recherche de la sequence identique a la proteine de requête
 
-		vector<pair<int,int>>  indices = lect_psq(blosum_path,bdd_path, sequence, gap_open_penalty+gap_extension_penalty, gap_extension_penalty);
+		array<pair<int,int>, 20> indices = lect_psq(blosum_path,bdd_path, sequence, gap_open_penalty+gap_extension_penalty, gap_extension_penalty);
 
 		//Recherche de la position de ces proteines	
 		for (int i = 0; i< indices.size(); i++)
