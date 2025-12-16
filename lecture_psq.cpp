@@ -25,12 +25,12 @@ char decoder(int nbr) {
 void tri(array<pair<int,int>, 20>& classement, pair<int,int> couple)
 {
 	
-	if (classement[classement.size()-1].first <= couple.first)
+	if (classement[classement.size()-1].first <= couple.first) //Si la séquence a un meilleure score que le plus petit score du tableau, il est inséré 
 	{
 		classement[classement.size()-1] = couple;
 	}
 	
-	for (int i =0; i<classement.size(); i++)
+	for (int i =0; i<classement.size(); i++) // Tri par insertion
 	{
 		int j = i;
 		while ((j>0) and classement[j-1].first < classement[j].first)
@@ -68,10 +68,8 @@ array<pair<int,int>, 20> lect_psq(string blosum_path, string file_path, string s
 	// Lire le fichier jusqu'à trouver la séquence de requête dans la base de données 
 	while (bdd_psq.read(&seq, 1)) 
 	{
-		//cout<<"boucle infini"<<endl;
 		value =0;
 		memcpy(&value, &seq, 1);
-		//cout << value << endl;
 		if (value != 0) {
 			prot_complete += decoder(value) ;
 		}
@@ -79,16 +77,15 @@ array<pair<int,int>, 20> lect_psq(string blosum_path, string file_path, string s
 		{
 			if (!(prot_complete.empty()))
 			{
-				int score = smith_waterman(matrice,prot_complete,seq_requete,m,gop,gep);
+				int score = smith_waterman(matrice,prot_complete,seq_requete,m,gop,gep); // Calcul du score grâce à l'algorithme de smith waterman
 				prot_complete = ""; // Réinitialise la séquence à chaque itération
 				pair <int,int> couple = {score, indice};
 				tri(classement, couple);
-				//cout << prot_complete << "et score : " << couple.first <<" " << couple.second << endl;
 				indice++;
 			}
 		}
 	}
 	
-	bdd_psq.close();
-	return classement; // La séquence n'a pas été trouvée
+	bdd_psq.close(); //Fermeture du fichier
+	return classement; 
 } 
