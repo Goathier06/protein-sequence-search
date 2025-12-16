@@ -5,10 +5,10 @@
 #include <unistd.h>
 using namespace std ;
 
-
-//Fonction permettant de retrouver le nom de la proteine
-// a partir de sa position dans le document
-string lect_phr(string file_path, int pos) {
+string lect_phr(string file_path, int pos){
+	//Fonction permettant de retrouver le nom de la proteine
+	//à partir de sa position dans le document
+	
 	//Initialisations
 	const string ext_phr = ".phr";
 	int valeur;
@@ -16,21 +16,26 @@ string lect_phr(string file_path, int pos) {
 	char lettre;
 	string header;
 	ifstream bdd_phr (file_path + ext_phr, ios::binary); //Ouverture du fichier
-	if (!bdd_phr.is_open()) {
+	if (!bdd_phr.is_open()) 
+	{
 		cerr << "Impossible d'ouvrir"<< endl;
 	}
 	bdd_phr.seekg(pos, std::ios::beg);
 	
-	while (valeur != 26 && bdd_phr.read(&oct,1))  {
+	while (valeur != 26 && bdd_phr.read(&oct,1))  
+	{
 		memcpy(&valeur,&oct, 1);
 	} 
 	
-	bdd_phr.read(&oct,1); //On lit le byte qui précède la chaine de caractères comme mentionné dans [Far10]
-	while (bdd_phr.read(&lettre,1)) {
-		if (lettre != ' ') {
+	bdd_phr.read(&oct,1); //On lit l'octet qui précède la chaine de caractères comme mentionné dans [Far10]
+	while (bdd_phr.read(&lettre,1)) 
+	{
+		if (lettre != ' ') 
+		{
 			header += lettre; //Construction du header
 		}
-		else {
+		else 
+		{
 			break;
 		}
 		

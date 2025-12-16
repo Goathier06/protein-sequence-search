@@ -6,22 +6,23 @@
 #include "lecture.h"
 using namespace std ;
 
-
-void print_header(string header, ostream &out = cout) {
+void print_header(string header, ostream &out = cout){
+	//Imprime le header
 	out << header  << endl; 
 	}
 
-
-
-
-int main (int argc, char *argv[]) {
-	if ( argc < 6) {
+int main (int argc, char *argv[]){
+	//Fonction principale exécutant le programme
+	
+	if ( argc < 6) 
+	{
 		cout << "Pas assez de fichiers donnés, veuillez compléter" << endl ;
 	return 1 ;
-}
+	}
 
 
-	else {
+	else 
+	{
 		//Initialisations
         string fasta_path (argv[1]);
         string bdd_path (argv[2]) ;
@@ -29,19 +30,17 @@ int main (int argc, char *argv[]) {
         int gap_open_penalty = stoi(argv[4]);
         int gap_extension_penalty = stoi(argv[5]);
 
-		
 		//Lecture du fichier contenant la proteine de requête
 		string sequence = lect_fasta(fasta_path);
 		
-		//Recherche de la sequence identique a la proteine de requête
-
+		//Recherche de la sequence identique à la proteine de requête
 		array<pair<int,int>, 20> indices = lect_psq(blosum_path,bdd_path, sequence, gap_open_penalty+gap_extension_penalty, gap_extension_penalty);
 
 		//Recherche de la position de ces proteines	
 		for (int i = 0; i< indices.size(); i++)
 		{
 			int pos = lect_pin(bdd_path, indices[i].second);   
-			string header = lect_phr(bdd_path, pos); //Recherche de son header a partir de sa position trouuvé dans le pin 
+			string header = lect_phr(bdd_path, pos); //Recherche de son header à partir de sa position trouvée dans le pin 
 			print_header(header + " " + to_string(indices[i].first));
 		}		
 	return 0 ; 
