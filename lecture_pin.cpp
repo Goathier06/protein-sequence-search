@@ -19,7 +19,7 @@ void reverse(char mot[]){
 
 int lect_pin(string file_path, int indice){
 	//Fonction permettant de récupérer la position de la protéine
-	//dans la base de données
+	//dans le fichier phr
 	
 	//Initialisations
 	const string ext_pin = ".pin";

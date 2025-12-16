@@ -5,7 +5,7 @@ using namespace std ;
 
 string lect_fasta(string file_path){
 	//Fonction permettant de lire le fichier .fasta
-	//et le stocker dans la proteine prot
+	//et de stocker la séquence de la protéine dans "sequence"
 	
 	string sequence;
 	string line = ""; 

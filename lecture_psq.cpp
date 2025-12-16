@@ -56,7 +56,7 @@ array<pair<int,int>, 20> lect_psq(string blosum_path, string file_path, string s
 	const string ext_psq = ".psq";
 	int value;
 	char seq;
-	array<pair<int,int>, 20> classement;;
+	array<pair<int,int>, 20> classement;
 	string prot_complete = "";
 	int m = seq_requete.length();
 	int indice=0 ; // Position de la séquence dans la bdd

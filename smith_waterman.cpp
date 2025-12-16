@@ -61,10 +61,10 @@ int smith_waterman(BlosumMatrix matrice, string prot_bdd, string prot_query, int
 			{ 
 				int H_gauche = H[i]; 
 				E[i] = max(H_gauche - gap_open_penalty, E[i] - gap_extension_penalty) ; //Calcul de la prochaine composante de E dans le vecteur colonne
-				F = max(H[i-1] - gap_open_penalty, F - gap_extension_penalty);
+				F = max(H[i-1] - gap_open_penalty, F - gap_extension_penalty); // Calcul de la prochaine valeur de F
 				score = matrice.getScore(Decodeur(prot_query[i-1]),Decodeur(prot_bdd[j]));
-				H[i] = max({H_diag_prec + score, E[i], F, 0}); //Calcule de la prochaine composante de H dans le vecteur colonne
-				S = max(H[i],S); //Calcule de meilleur score
+				H[i] = max({H_diag_prec + score, E[i], F, 0}); //Calcul de la prochaine composante de H dans le vecteur colonne
+				S = max(H[i],S); //Calcul du meilleur score
 				H_diag_prec = H_gauche; //Stocke en mémoire la valeur qui deviendra la valeur de H_diag_prec à la prochaine itération
 			}			
 		}
