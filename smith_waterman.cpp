@@ -44,22 +44,22 @@ int Decodeur(char X){
 
 		
 int smith_waterman(BlosumMatrix matrice, string prot_bdd, string prot_query, int m, int gap_open_penalty, int gap_extension_penalty) { // Retourne une liste de position dans le fichier pin des 20 protéines ressemblants le plus à la protéine de requête
+	//Initialisation du score et des vecteurs colonnnes de la matrice H et E
 		vector<int> H(m+1, 0); 
 		vector<int> E(m+1, 0);
 		int S =0;
 		int score;
-		for (int j = 0; j < prot_bdd.length(); j++) {
-			//cout << "NOUVELLE COLONNE" << endl;
- 			int H_diag_prec = 0; // Ce H et F sont nos cas de base se trouvant tout en haut dans le graphe de dépendance, 
-			int F=0; // donc à chaque nouvelle colonne, ils sont égaux à 0
-			for (int i=1; i < m+1; i++) {
-				int H_gauche = H[i];
-				E[i] = max(H_gauche - gap_open_penalty, E[i] - gap_extension_penalty) ;// E[i] correspond à E[1,0] et on calcule E[1,1]
+		for (int j = 0; j < prot_bdd.length(); j++) { //Itération sur les n colonnes
+ 			int H_diag_prec = 0; // Cas de base pour H[0,j]
+			int F=0; // Cas de base pour F
+			for (int i=1; i < m+1; i++) { //Itération sur les m lignes
+				int H_gauche = H[i]; 
+				E[i] = max(H_gauche - gap_open_penalty, E[i] - gap_extension_penalty) ;// Calcul de la prochaine composante de E dans le vecteur colonne
 				F = max(H[i-1] - gap_open_penalty, F - gap_extension_penalty);
 				score = matrice.getScore(Decodeur(prot_query[i-1]),Decodeur(prot_bdd[j]));
-				H[i] = max({H_diag_prec + score, E[i], F, 0});
-				S = max(H[i],S);
-				H_diag_prec = H_gauche;
+				H[i] = max({H_diag_prec + score, E[i], F, 0}); // Calcul de la prochaine composante de H dans le vecteur colonne
+				S = max(H[i],S); // Calcul de meilleur score
+				H_diag_prec = H_gauche; // Stocke en mémoire la valeur qui deviendra la valeur de H_diag_prec à la prochaine itération
 			}			
 		}
 	return S;
