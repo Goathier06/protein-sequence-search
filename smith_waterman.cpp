@@ -53,7 +53,8 @@ int smith_waterman(BlosumMatrix matrice, string prot_bdd, string prot_query, int
 	vector<int> E(m+1, 0);
 	int S =0;
 	int score;
-	for (int j = 0; j < prot_bdd.length(); j++) //Itération sur les n colonnes
+	int n = prot_bdd.length();
+	for (int j = 0; j < n; j++) //Itération sur les n colonnes
 		{ 
  			int H_diag_prec = 0; // Cas de base pour H[0,j]
 			int F=0; // Cas de base pour F
