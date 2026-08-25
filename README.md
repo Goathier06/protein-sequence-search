@@ -1,24 +1,52 @@
-# INFOH304 Projet
+# Recherche de séquences protéiques - Smith-Waterman
 
-Groupe No 9
-* Bou Khaled Yasmina (ybou0128)
-* Dejean Romain (rdej0003)
-* Godeau Gauthier (ggod0006)
+Programme en C++ implémentant l'algorithme de **Smith-Waterman** pour rechercher, parmi une base de données de séquences protéiques, celles les plus similaires à une séquence de requête donnée (au format FASTA), au format des bases de données NCBI BLAST.
 
-## Instructions
+## Fonctionnalités
 
-1. Forkez ce projet en cliquant sur le bouton "Fork/Créer une bifurcation" en haut à droite
-	* Pour "Visibility level", choisissez "Private"
-	* Attention: cette opération ne doit être réalisée que par l'un des 3 membres du groupe
-	* Instructions détaillées pour l'utilisation d'un fork: voir [le dépôt du cours](https://gitlab.ulb.be/jroland/infoh304)
-1. Précisez votre numéro de groupe, vos noms et identifiants Gitlab en modifiant les données dans le README ci-dessus
-1. Donnez accès en écriture à votre dépôt aux autres membres du groupe en les invitant en tant que "Chargé de maintenance/Maintainer" via le menu "Gestion -> Membres" ou "Manage -> Members"
-1. Via le même menu, donnez accès en lecture à votre dépôt aux identifiants suivants en les nommant "Rapporteur/Reporter" (attention, le rôle "Invité/Guest" ne donne pas accès aux fichiers sur le dépôt et n'est donc pas suffisant)
-	* @jroland (Jérémie Roland, titulaire du cours)
-	* @bdubus (Benoît Dubus, assistant)
-	* @balorent (Baptiste Lorent, assistant)
-	* @rdevoogh (Robin Devooght, assistant)
-	* @iria0003 (Ivan Riabicheff, élève-assistant)
-1. Communiquez l'adresse de votre dépôt via le [formulaire sur l'UV](https://uv.ulb.ac.be/mod/assign/view.php?id=1479564)
-1. Mettez à jour votre dépôt au fur et à mesure de votre travail sur le projet
-1. Le dernier commit avant l'heure de l'échéance (intermédiaire ou finale) sera considéré comme la version soumise pour évaluation
+- Lecture de fichiers de requête au format FASTA
+- Lecture des fichiers binaires d'une base de données au format NCBI BLAST (`.psq`, `.pin`, `.phr`)
+- Lecture des matrices de score BLOSUM
+- Alignement local optimal par programmation dynamique (algorithme de Smith-Waterman)
+- Retour des séquences les plus proches de la requête, classées par score
+
+## Stack technique
+
+- C++
+- Compilation via `Makefile` / `g++`
+- Programmation dynamique pour l'alignement de séquences
+
+## Compilation
+
+```bash
+make projet
+```
+
+## Utilisation
+
+```bash
+./projet <fichier_requête.fasta> <chemin_base_de_données> <fichier_blosum> <pénalité_ouverture_gap> <pénalité_extension_gap>
+```
+
+Des fichiers de requête d'exemple sont disponibles dans [`query_testprelim/`](query_testprelim) et [`query_testfinal/`](query_testfinal).
+
+Les fichiers de base de données (NCBI BLAST) et les matrices BLOSUM ne sont pas inclus dans ce dépôt (voir [`database/README.md`](database/README.md) et [`blosum/README.md`](blosum/README.md)) — ils peuvent être téléchargés depuis UniProt/NCBI.
+
+## Références
+
+Ce projet s'appuie sur les travaux suivants :
+- Smith, T.F. and Waterman, M.S. (1981). *Identification of common molecular subsequences.* Journal of Molecular Biology.
+- Gotoh, O. (1982). *An improved algorithm for matching biological subsequences.* Journal of Molecular Biology.
+- Rognes, T. (2011). *Faster Smith-Waterman database searches with inter-sequence SIMD parallelisation.* BMC Bioinformatics.
+- Farrar, M.S. (2010). *NCBI BLAST Database Format.* NCBI.
+
+## Rapport
+
+Un rapport détaillant la conception et les choix d'implémentation est disponible : [`Rapport_INFO-H304_Groupe_9.pdf`](Rapport_INFO-H304_Groupe_9.pdf).
+
+## Équipe
+
+Projet réalisé en groupe dans le cadre du cours INFO-H304 (ULB) :
+- Yasmina Bou Khaled
+- Romain Dejean
+- Gauthier Godeau
