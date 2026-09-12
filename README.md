@@ -1,20 +1,20 @@
-# Recherche de séquences protéiques - Smith-Waterman
+# Protein Sequence Search - Smith-Waterman
 
-Programme en C++ implémentant l'algorithme de **Smith-Waterman** pour rechercher, parmi une base de données de séquences protéiques, celles les plus similaires à une séquence de requête donnée (au format FASTA), au format des bases de données NCBI BLAST.
+C++ program implementing the **Smith-Waterman** algorithm to search, within a protein sequence database, for the sequences most similar to a given query sequence (in FASTA format), using the NCBI BLAST database format.
 
-## Fonctionnalités
+## Features
 
-- Lecture de fichiers de requête au format FASTA
-- Lecture des fichiers binaires d'une base de données au format NCBI BLAST (`.psq`, `.pin`, `.phr`)
-- Lecture des matrices de score BLOSUM
-- Alignement local optimal par programmation dynamique (algorithme de Smith-Waterman)
-- Retour des séquences les plus proches de la requête, classées par score
+- Reading query files in FASTA format
+- Reading binary database files in NCBI BLAST format (`.psq`, `.pin`, `.phr`)
+- Reading BLOSUM scoring matrices
+- Optimal local alignment using dynamic programming (Smith-Waterman algorithm)
+- Returning the sequences closest to the query, ranked by score
 
-## Stack technique
+## Technical Stack
 
 - C++
 - Compilation via `Makefile` / `g++`
-- Programmation dynamique pour l'alignement de séquences
+- Dynamic programming for sequence alignment
 
 ## Compilation
 
@@ -22,31 +22,31 @@ Programme en C++ implémentant l'algorithme de **Smith-Waterman** pour recherche
 make projet
 ```
 
-## Utilisation
+## Usage
 
 ```bash
-./projet <fichier_requête.fasta> <chemin_base_de_données> <fichier_blosum> <pénalité_ouverture_gap> <pénalité_extension_gap>
+./projet <query_file.fasta> <database_path> <blosum_file> <gap_open_penalty> <gap_extension_penalty>
 ```
 
-Des fichiers de requête d'exemple sont disponibles dans [`query_testprelim/`](query_testprelim) et [`query_testfinal/`](query_testfinal).
+Example query files are available in [`query_testprelim/`](query_testprelim) and [`query_testfinal/`](query_testfinal).
 
-Les fichiers de base de données (NCBI BLAST) et les matrices BLOSUM ne sont pas inclus dans ce dépôt (voir [`database/README.md`](database/README.md) et [`blosum/README.md`](blosum/README.md)) — ils peuvent être téléchargés depuis UniProt/NCBI.
+The NCBI BLAST database files and BLOSUM matrices are not included in this repository (see [`database/README.md`](database/README.md) and [`blosum/README.md`](blosum/README.md)) — they can be downloaded from UniProt/NCBI.
 
-## Références
+## References
 
-Ce projet s'appuie sur les travaux suivants :
+This project is based on the following works:
 - Smith, T.F. and Waterman, M.S. (1981). *Identification of common molecular subsequences.* Journal of Molecular Biology.
 - Gotoh, O. (1982). *An improved algorithm for matching biological subsequences.* Journal of Molecular Biology.
 - Rognes, T. (2011). *Faster Smith-Waterman database searches with inter-sequence SIMD parallelisation.* BMC Bioinformatics.
 - Farrar, M.S. (2010). *NCBI BLAST Database Format.* NCBI.
 
-## Rapport
+## Report
 
-Un rapport détaillant la conception et les choix d'implémentation est disponible : [`Rapport_INFO-H304_Groupe_9.pdf`](Rapport_INFO-H304_Groupe_9.pdf).
+A report detailing the design and implementation choices is available: [`Rapport_INFO-H304_Groupe_9.pdf`](Rapport_INFO-H304_Groupe_9.pdf).
 
-## Équipe
+## Team
 
-Projet réalisé en groupe dans le cadre du cours INFO-H304 (ULB) :
+Group project completed as part of the INFO-H304 course (ULB):
 - Yasmina Bou Khaled
 - Romain Dejean
 - Gauthier Godeau
